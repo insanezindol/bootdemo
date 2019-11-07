@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bootdemo.mapper.PostsMapper">
+
+    <select id="getList" parameterType="com.example.bootdemo.vo.PostsInfo" resultType="com.example.bootdemo.vo.PostsInfo">
+        SELECT /* getList */
+            ID,
+            SUBJECT,
+            CONTENT,
+            CREATED,
+            USER_NAME,
+            HIT
+        FROM
+            TBL_POSTS
+        WHERE 1=1
+        ORDER BY CREATED DESC
+    </select>
+
+    <select id="getOne" parameterType="com.example.bootdemo.vo.PostsInfo" resultType="com.example.bootdemo.vo.PostsInfo">
+        SELECT /* getOne */
+            ID,
+            SUBJECT,
+            CONTENT,
+            CREATED,
+            USER_NAME,
+            HIT
+        FROM
+            TBL_POSTS
+        WHERE 1=1
+            AND ID = #{id}
+    </select>
+
+    <insert id="addPost" parameterType="com.example.bootdemo.vo.PostsInfo">
+        INSERT /* addPost */
+		INTO TBL_POSTS (
+            SUBJECT,
+            CONTENT,
+            CREATED,
+            USER_NAME
+		) VALUES (
+			#{subject},
+			#{content},
+			NOW(),
+			#{user_name}
+		)
+    </insert>
+
+    <update id="modifyPost" parameterType="com.example.bootdemo.vo.PostsInfo">
+        UPDATE /* modifyPost */
+            TBL_POSTS
+        SET
+            SUBJECT = #{subject},
+            CONTENT = #{content}
+        WHERE 1=1
+            AND ID = #{id}
+    </update>
+
+    <delete id="deletePost" parameterType="com.example.bootdemo.vo.PostsInfo">
+        DELETE /* deletePost */
+            FROM TBL_POSTS
+        WHERE 1=1
+            AND ID = #{id}
+    </delete>
+
+</mapper>

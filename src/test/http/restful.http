@@ -1,0 +1,48 @@
+### rest api get list
+GET http://localhost:8080/rest/resource
+Content-Type: application/json
+Accept: application/json
+
+###
+
+
+### rest api get detail info
+GET http://localhost:8080/rest/resource/7
+Content-Type: application/json
+Accept: application/json
+
+###
+
+
+### rest api add info
+POST http://localhost:8080/rest/resource
+Content-Type: application/json
+Accept: application/json
+
+{
+  "subject" : "restful test subject",
+  "content" : "restful test content",
+  "user_name" : "restful test username"
+}
+###
+
+
+### rest api modify info
+PUT http://localhost:8080/rest/resource
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id" : "9",
+  "subject" : "제목 업데이트",
+  "content" : "내용 업데이트"
+}
+###
+
+
+### rest api delete info
+DELETE http://localhost:8080/rest/resource/9
+Content-Type: application/json
+Accept: application/json
+
+###

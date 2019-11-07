@@ -1,0 +1,34 @@
+### 사용자 토큰 생성
+GET http://localhost:8080/auth/authenticate
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username" : "jhlee",
+  "password" : "1234"
+}
+
+###
+
+### 사용자 토큰 인증
+GET http://localhost:8080/my/mypage
+Content-Type: application/json
+Accept: application/json
+Authorization: token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqaGxlZSIsImV4cCI6MTU2OTQ1NTk0MCwiaWF0IjoxNTY5NDU1MzQwfQ.qK7kDhS1l3HAuSPDPkGISAlNH-ivQEMZAsS0YToC6BdV6IKfsHwRARvgTdsXabdd586lj1Z1qG-e97zwxN0eBQ
+
+###
+
+### 사용자 등록
+GET http://localhost:8080/auth/join
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username" : "test01",
+  "password" : "1234",
+  "authority" : "ROLE_USER",
+  "enabled" : "1",
+  "name" : "직원01"
+}
+
+###

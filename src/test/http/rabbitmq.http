@@ -1,0 +1,6 @@
+### rabbitmq send message
+GET http://localhost:8080/rabbit/send/message
+Content-Type: application/json
+Accept: application/json
+
+###

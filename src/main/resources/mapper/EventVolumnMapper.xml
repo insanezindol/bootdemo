@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bootdemo.mapper.EventVolumnMapper">
+
+    <select id="selectEventTradeBigAmount" resultType="com.example.bootdemo.vo.EventVolumeInfo">
+        SELECT
+            event_id,
+            uid,
+            user_group,
+            trade_amount,
+            create_date,
+            update_date
+        FROM
+            event_trade_big_amount
+        WHERE event_id = #{eventId, jdbcType=INTEGER}
+            AND uid = #{uid, jdbcType=INTEGER}
+    </select>
+
+    <insert id="insertEventTradeBigAmount" parameterType="com.example.bootdemo.vo.EventVolumeInfo">
+        INSERT INTO event_trade_big_amount (
+            event_id,
+            uid,
+            user_group,
+            trade_amount,
+            create_date,
+            update_date
+        ) VALUES (
+            #{event_id},
+            #{uid},
+            #{user_group},
+            #{trade_amount},
+            NOW(),
+            NOW()
+        )
+    </insert>
+
+    <update id="updateEventTradeBigAmount" parameterType="com.example.bootdemo.vo.EventVolumeInfo">
+        UPDATE event_trade_big_amount
+        SET trade_amount = #{trade_amount}, update_date = NOW()
+        WHERE event_id = #{event_id} AND uid = #{uid}
+    </update>
+
+</mapper>

@@ -1,0 +1,53 @@
+### 게시판 리스
+GET http://localhost:8080/post/list
+Content-Type: application/json
+Accept: application/json
+
+###
+
+### 게시판 상세
+GET http://localhost:8080/post/get
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id" : "5"
+}
+###
+
+
+### 게시판 등록
+GET http://localhost:8080/post/add
+Content-Type: application/json
+Accept: application/json
+
+{
+  "subject" : "subject test",
+  "content" : "hello! this is content test. abcdefg 123456",
+  "userName" : "jhlee"
+}
+###
+
+
+### 게시판 수정
+GET http://localhost:8080/post/modify
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id" : "5",
+  "subject" : "한글 제목으로 수정!",
+  "content" : "한글 내용으로 수정!"
+}
+###
+
+
+### 게시판 삭제
+GET http://localhost:8080/post/delete
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id" : "4"
+}
+###

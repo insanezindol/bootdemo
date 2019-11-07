@@ -1,0 +1,22 @@
+### event logic test
+GET http://localhost:8080/event/logic
+Content-Type: application/json
+Accept: application/json
+
+###
+
+
+### event time logic test
+GET http://localhost:8080/event/timeTest?uid=14610
+Content-Type: application/json
+Accept: application/json
+
+###
+
+
+### event update logic test
+GET http://localhost:8080/event/updateTest?eventID=72&uid=11000&tradeAmount=1000
+Content-Type: application/json
+Accept: application/json
+
+###

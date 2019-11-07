@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bootdemo.mapper.AuthMapper">
+
+    <select id="getUserById" parameterType="String" resultType="com.example.bootdemo.vo.CustomUserDetails">
+        SELECT /* getUserById */
+            username,
+            password,
+            authority,
+            enabled,
+            name
+        FROM
+            gdae2_market.user
+        WHERE 1=1
+            AND username = #{username}
+    </select>
+
+    <select id="selectExistsByUserId" parameterType="com.example.bootdemo.vo.AuthInfo" resultType="Boolean">
+        SELECT EXISTS (
+            SELECT 1 FROM gdae2_market.user
+            WHERE username = #{username})
+    </select>
+
+    <insert id="insertAuthInfo" parameterType="com.example.bootdemo.vo.AuthInfo">
+        INSERT INTO gdae2_market.user (USERNAME, PASSWORD, AUTHORITY, ENABLED, NAME)
+        VALUES (#{username}, #{password}, #{authority}, #{enabled}, #{name})
+    </insert>
+
+</mapper>

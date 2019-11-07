@@ -1,0 +1,22 @@
+### redis get var
+GET http://localhost:8080/redis/get/last-startup-time
+Content-Type: application/json
+Accept: application/json
+
+###
+
+
+### redis set var
+POST http://localhost:8080/redis/set/name/jhlee
+Content-Type: application/json
+Accept: application/json
+
+###
+
+
+### redis delete var
+DELETE http://localhost:8080/redis/del/name
+Content-Type: application/json
+Accept: application/json
+
+###
