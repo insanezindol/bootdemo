@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/event")
@@ -359,6 +356,58 @@ public class EventController {
         data.put("code", "100200");
         data.put("msg", "Success");
         data.put("data", null);
+        return data;
+    }
+
+    @GetMapping(value = "/english")
+    public JSONObject english() {
+
+        String[] nameList = {"Aaron","Abel","Abigail","Abraham","Ace","Ada","Adam","Adela","Adelio","Adolph","Adonis","Adora","Agatha","Aggie","Aida","Ailish","Aimee","Allan","Albert","Albino","Alex","Alexa","Alexander","Alexandra","Alexia","Alexis","Alfred","Ali","Alice","Alicia","Alika","Allie","Allison","Aloha","Alvin","Alyssa","Amanda","Amber","Ami","Amos","Amy","Anais","Andra","Andrea","Andrew","Andy","Angel","Angela","Angelica","Anika","Ann","Anna","Annie","Anthony","Antonio","Apollo","Aria","Ariel","Arista","Arnold","Arthur","Arvid","Asha","Ashley","Aster","Astin","Athena","Audrey","Aurora","Austin","Autumn","Ava","Baba","Bailey","Baldy","Bambi","Barbara","Barbie","Barley","Barney","Baron","Basil","Baxter","Beau","Bebe","Beck","Becky","Belita","Bella","Belle","Benecia","Benedict","Benjamin","Benny","Berg","Bernice","Beryl","Bess","Bessie","Betty","Biana","Bianca","Bibiane","Billy","Bingo","Bishop","Blanche","Bliss","Blondie","Bonita","Bonnie","Bono","Boris","Boss","Breanna","Brenda","Brian","Briana","Brianna","Bright","Brittany","Brooke","Bruno","Buck","Bunny","Caesar","Caley","Calix","Calla","Callia","Camilla","Candace","Captain","Cara","Carmel","Carmen","Caroline","Casey","Cassandra","Cassidy","Catherine","Cathy","Cecil","Celestyn","Celina","Cha Cha","Champ","Charles","Charlie","Charlotte","Chase","Chavi","Chelsea","Cherie","Cherry","Chilli","Chloe","Chrissy","Christina ","Christine","Christopher","Chubby","Cindy","Clara","Claude","Claudia","Cleo","Cleta","Cliff","Coco","Cody","Colin","Connie","Conrad","Cookie","Corby","Courtney","Coy","Coyote","Crimson","Crispin","Crystal","Cutie","Cyclone","Cyma","Daisy","Dali","Dana","Daniel","Danielle","Danika","Darby","Daria","Darin","Dario","Darlene","Darwin","Dave","David","Dean","Della","Delling","Delphine","Denise","Dennis","Denver","Derry","Destiny","Deva","Dexter","Diallo","Diana","Dick","Dino","Dixie","Donald","Donna","Doreen","Doris","Dorothy","Douglas","Duke","Duncan","Dustin","Dyllis","Eavan","Ebony","Echo","Edan","Edeline","Eden","Edgar","Edith","Edmund","Edward","Edwin","Edwina","Eileen","Eilis","Eldora","Elf","Elin","Elisha","Elizabeth","Ella","Elle","Ellen","Elroy","Elsa","Elva","Elvis","Elysia","Emily","Emma","Enoch","Eric","Erica","Erin","Eris","Eros","Esteban","Esther","Ethan","Eugene","Eva","Evan","Eve","Evelyn","Faith","Fanny","Farrell","Favian","Fedora","Felice","Felix","Fella","Ferdianand","Fidelio","Filia","Fleta","Flora","Florence","Floria","Forrest","Frederick","Freeman","Gabriel","Gabriella","Gabrielle","Gali","Gem","Gemma","Geoffrey","George","Georgia","Geraldine","Gilbert","Gili","Giovanni","Gladys","Gloria","Goofy","Grace","Grania","Gregory","Hailey","Haley","Halona","Hannah","Happy","Harace","Harley","Harmony","Harold","Harriet","Harry","Hazel","Heba","Hedy","Helen","Helia","Heloise","Henry","Hera","Hermosa","Hero","Hestia","Hilda","Hollis","Honey","Hope","Hubert","Hue","Huey","Hugh","Humphery","Ian","Ida","Iliana","Indira","Ingrid","Irene","Irina","Iris","Isaac","Isabel","Isadora","Isis","Issac","Ivy","Jace","Jack","Jackson","Jaclyn","Jacob","Jacqueline","Jade","James","Jamie","Jane","Janet","Janice","Jasmine","Jasper","Jefferson","Jeffrey","Jenifer","Jenna","Jennie","Jennifer","Jenny","Jeremy","Jericho","Jerome","Jerry","Jess","Jessica","Jessie","Jocelyn","Jodie","Joe","Johanna","John, jack","Jolly","Jonathan","Jordan","Joy","Juan","Jud","Judith","Julia","Juliana","Julie","Juliet","Justin","Kaitlyn","Kali","Kama","Kara","Karen","Karena","Karis","Kassia","Kate","Katelyn","Katherine","Kathryn","Katie","Kayla","Kaylee","Kellan","Kelley","Kelsey","Kenneth","Kerri","Kevin","Kiara","Kimberley","Kimberly","Kitty","Klaus","Kori","Kuper","Kyle","Kylie","Kyra","Lakia","Lala","Lamis","Lani","Lappy","Lara","Laura","Lauren","Lavina","Lawrence","Lee","Leena","Leila","Lelia","Leo","Leonard","Leopold","Leslie","Lev","Lewis, Louis","Lidia","Lillian","Lily","Lina","Linda","Lisa","Lloyd","Lonnie","Lottie","Louis","Lowell","Lucia","Lucifer","Lucy","Lukas","Luna","Mabel","Mackenzie","Madeline","Madison","Madonna","Mag","Maggie","Makaio","Makayla","Malissa","Malo","Mamie","Mana","Mandelina","Mandy","Manon","Marcia","Margaret","Maria","Mariah","Marissa","Mark","Martin","Martina","Mary","Mathilda","Matthew","Maya","Megan","Melina","Melissa","Meriel","Michael","Michaela ","Michelle","Mickey","Mighty","Mikayla ","Minnie","Miranda","Missy","Misty","Molly","Monet","Monica","Morgan","Morris","Muffin","Mulan","Murphy","Nadia","Nalo","Nami","Nana","Nancy","Nani","Naomi","Nara","Narcisse","Natalie","Navid","Neal","Neema","Nelly","Nero","Nia","Nicholas","Nicky","Nicola","Nicole","Nina","Noel","Odelia","Olga","Olive","Oliver","Olivia","Oscar","Owen","Pablo","Pag","Paige","Paloma","Pamela","Pandora","Patricia","Patrick","Paul","Pavel","Peggy","Pello","Penda","Penny","Peppi","Peter","Petra","Phila","Philip","Philippa","Phillip","Phoenix","Pinky","Pluto","Poco","Polo","Pooky","Poppy","Primo","Prince","Princess","Puffy","Queena","Rabia","Rachel","Raina","Ralph","Rambo","Rania","Ravi","Rebecca","Redford","Reggie","Rei","Remy","Rex","Richard","Ricky","Riley","Ringo","Rio","Risa","Robbie","Robert","Robin","Rocky","Roja","Roland","Rollo","Romeo","Rosie","Roxy","Roy","Ruby","Rudolph","Rudy","Ryan","Sabrina","Sally","Salvatore","Sam","Samantha","Samson","Samuel","Sandy","Sara","Sarah","Sasha","Savannah","Scarlet","Scoop","Sean","Sebastian","Selina","Selma","Serena","Severino","Shaina","Shasa","Shelby","Sheri","Sierra","Silky","Simba","Simon","Sniper","Solomon","Sonia","Sonny","Sophia","Sophie","Sora","Sparky","Spooky","Spotty","Stella","Stephanie","Steven","Sting","Storm","Sugar","Sunny","Sweetie","Sydney","Sylvester","Sylvia","Talia","Talli","Tanesia","Tania","Taylor","Ted","Teenie","Terra","Tess","Theodore","Thomas","Tomo","Trisha","Trudy","Tylor","Uba","Umberto","Valencia","Vanessa ","Velika","Vera","Verdi","Veronica","Victoria","Vincent","Violet","Vito","Vivi","Vivian","Waldo","Wallace","Walter","Weenie","Wendy","William","Wily","Winston","Woody","Yaro","Yeti","Yuki","Zaza","Zeki","Zelia","Zena","Zenia","Zenon","Zeppelin","Zeus","Zili","Zinna","Zizi","Zoe","Zorro","Zulu"};
+
+        Map<String, Integer> map = new Hashtable<>();
+        for (int i=0; i<100000; i++) {
+            Random random = new Random();
+            int randInt = random.nextInt(nameList.length);
+            map.put(nameList[randInt], map.getOrDefault(nameList[randInt], 0) + 1);
+        }
+
+        // value 내림차순으로 정렬하고, value가 같으면 key 오름차순으로 정렬
+        List<Map.Entry<String, Integer>> list = new LinkedList<>(map.entrySet());
+
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                int comparision = (o1.getValue() - o2.getValue()) * -1;
+                return comparision == 0 ? o1.getKey().compareTo(o2.getKey()) : comparision;
+            }
+        });
+
+        // 순서유지를 위해 LinkedHashMap을 사용
+        Map<String, Integer> sortedMap = new LinkedHashMap<>();
+        int idx = 0;
+        int maximumInt = 0;
+        List<String> outputList = new ArrayList<>();
+        for(Iterator<Map.Entry<String, Integer>> iter = list.iterator(); iter.hasNext();){
+            Map.Entry<String, Integer> entry = iter.next();
+            // 전체 Map 생성
+            //sortedMap.put(entry.getKey(), entry.getValue());
+            if (idx == 0) {
+                maximumInt = entry.getValue();
+            }
+            if(maximumInt == entry.getValue()){
+                sortedMap.put(entry.getKey(), entry.getValue());
+                outputList.add(entry.getKey());
+            }
+            idx++;
+        }
+
+        log.info(""+sortedMap);
+        log.info(""+outputList);
+
+        JSONObject data = new JSONObject();
+        data.put("code", "100200");
+        data.put("msg", "Success");
+        data.put("data", outputList);
         return data;
     }
 
