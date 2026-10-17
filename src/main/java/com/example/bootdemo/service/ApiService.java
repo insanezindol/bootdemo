@@ -1,12 +1,13 @@
 package com.example.bootdemo.service;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import com.example.bootdemo.util.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Service
 @Slf4j
@@ -78,10 +79,10 @@ public class ApiService {
 
                             BigDecimal ratio1 = ask.add(bid);
                             BigDecimal ratio2 = ratio1.multiply(marketPrice);
-                            BigDecimal ratio = volumn.divide(ratio2, 2, BigDecimal.ROUND_HALF_UP);
+                            BigDecimal ratio = volumn.divide(ratio2, 2, RoundingMode.HALF_UP);
 
-                            ask = ask.setScale(4, BigDecimal.ROUND_HALF_UP);
-                            bid = bid.setScale(4, BigDecimal.ROUND_HALF_UP);
+                            ask = ask.setScale(4, RoundingMode.HALF_UP);
+                            bid = bid.setScale(4, RoundingMode.HALF_UP);
 
                             log.info(ASSET_ARR[j] + "/KRW");
                             log.info("" + marketPrice);

@@ -1,47 +1,35 @@
 package com.example.bootdemo.util;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
+import org.apache.hc.client5.http.ClientProtocolException;
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @Slf4j
 public class HttpUtil {
 
     public static String get(String url) {
-        CloseableHttpResponse response = null;
-        String returnStr = null;
-
-        CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet httpGet = new HttpGet(url);
-        try {
-            response = httpClient.execute(httpGet);
-            int status = response.getStatusLine().getStatusCode();
-            if (status >= 200 && status < 300) {
-                HttpEntity entity = response.getEntity();
-                if (entity != null) {
-                    returnStr = EntityUtils.toString(entity, "UTF-8");
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+            return httpClient.execute(httpGet, response -> {
+                int status = response.getCode();
+                if (status >= 200 && status < 300) {
+                    HttpEntity entity = response.getEntity();
+                    return entity != null ? EntityUtils.toString(entity, StandardCharsets.UTF_8) : null;
+                } else {
+                    throw new ClientProtocolException("Unexpected response status : " + status);
                 }
-            } else {
-                throw new ClientProtocolException("Unexpected response status : " + status);
-            }
-        } catch (ClientProtocolException e) {
-            log.error(e.toString());
+            });
         } catch (IOException e) {
             log.error(e.toString());
-        } finally {
-            try {
-                response.close();
-            } catch (IOException e) {
-            }
         }
-        return returnStr;
+        return null;
     }
 
 }

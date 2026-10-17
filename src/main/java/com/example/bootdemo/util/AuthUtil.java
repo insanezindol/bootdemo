@@ -3,11 +3,13 @@ package com.example.bootdemo.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,8 +22,9 @@ public class AuthUtil {
     private String ISSUER = "insanezindol";
     private String AUDIENCE = "web";
     private long TTL_MINUTES = 600;
-    private String SECRET = "915fc714cf70000744c908d1bc140166f";
-    private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS512;
+    // HS512 는 최소 512bit(64byte) 이상의 키가 필요하다
+    private String SECRET = "915fc714cf70000744c908d1bc140166f915fc714cf70000744c908d1bc140166f";
+    private SecretKey SECRET_KEY = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
@@ -37,7 +40,7 @@ public class AuthUtil {
     }
 
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
+        return Jwts.parser().verifyWith(SECRET_KEY).build().parseSignedClaims(token).getPayload();
     }
 
     private Boolean isTokenExpired(String token) {
@@ -51,9 +54,9 @@ public class AuthUtil {
     }
 
     private String doGenerateToken(Map<String, Object> claims, String subject) {
-        String token = Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + TTL_MINUTES * 1000))
-                .signWith(SIGNATURE_ALGORITHM, SECRET).compact();
+        String token = Jwts.builder().claims(claims).subject(subject).issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + TTL_MINUTES * 1000))
+                .signWith(SECRET_KEY, Jwts.SIG.HS512).compact();
         return token;
     }
 
